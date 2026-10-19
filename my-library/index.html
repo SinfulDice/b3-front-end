@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gravitas+One&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" />
+
+    <link rel="stylesheet" href="style.css">
+    <title>Ma bibliothèque</title>
+  </head>
+  <body>
+    <header>
+      <a class="site-name" href="index.html">Ma bibliothèque</a>
+      <nav>
+        <ul>
+          <li><a href="index.html" aria-current="page">Accueil</a></li>
+        </ul>
+      </nav>
+      <hr />
+    </header>
+
+    <main>
+      <div class="intro">
+        <h1>Bibliothèque de livres</h1>
+        <p>Bienvenue dans notre bibliothèque. Découvrez notre <strong>sélection de romans d’aventure</strong> et consultez la fiche d’un livre pour en savoir plus.</p>
+        <p>Cette sélection vous invite à explorer des récits d’aventure et des univers imaginaires. <em>Quel sera votre prochain voyage ?</em></p>
+      </div>
+
+      <section>
+        <h2>Les livres de la bibliothèque</h2>
+
+        <form class="search" action="index.html" method="get">
+          <p>
+            <label for="book-name">Rechercher un livre</label>
+            <input type="search" name="q" id="book-name" placeholder="Ex. : Moby-Dick" />
+            <button type="submit" aria-label="Rechercher">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="16.5" y1="16.5" x2="21" y2="21" />
+              </svg>
+            </button>
+          </p>
+        </form>
+
+        <ul class="book-list">
+          <li class="card">
+            <a class="card-link" href="book.html">
+              <img class="card-cover" src="moby-dick.png" alt="" />
+              <h3 class="card-title">Moby-Dick</h3>
+              <p class="card-meta">
+                <span class="card-author">Herman Melville</span>
+                <time datetime="1851">1851</time>
+              </p>
+            </a>
+          </li>
+          <li class="card">
+            <a class="card-link" href="book.html">
+              <img class="card-cover" src="moby-dick.png" alt="" />
+              <h3 class="card-title">Vingt mille lieues sous les mers</h3>
+              <p class="card-meta">
+                <span class="card-author">Jules Verne</span>
+                <time datetime="1870">1870</time>
+              </p>
+            </a>
+          </li>
+          <li class="card">
+            <a class="card-link" href="book.html">
+              <img class="card-cover" src="moby-dick.png" alt="" />
+              <h3 class="card-title">L’Île au trésor</h3>
+              <p class="card-meta">
+                <span class="card-author">Robert Louis Stevenson</span>
+                <time datetime="1883">1883</time>
+              </p>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <hr />
+      <p>© 2026 Sup de Vinci — Bibliothèque pédagogique</p>
+    </footer>
+  </body>
+</html>

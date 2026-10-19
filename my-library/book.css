@@ -1,0 +1,234 @@
+/* Styles propres à la fiche de livre (chargé après style.css) */
+
+/* Fil d'Ariane sur une ligne, avec des séparateurs */
+.breadcrumb {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+
+  & ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+  }
+
+  & li + li::before {
+    content: "/";
+    margin: 0 0.5rem;
+    color: var(--color-text-muted);
+  }
+
+  & a[aria-current="page"] {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+}
+
+/* Titre et auteur : le titre domine, l'auteur est en dessous */
+.book-header {
+  margin-bottom: 2rem;
+
+  & h1 {
+    font-size: 3rem;
+  }
+}
+
+.book-author {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+/* Deux colonnes : couverture et actions à gauche, informations à droite */
+.book-layout {
+  display: grid;
+  grid-template-columns: 18rem 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.book-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-surface);
+}
+
+.book-cover {
+  width: 100%;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.25);
+}
+
+.book-order {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  /* > : seulement le titre de la section, pas celui de la fenêtre */
+  & > h2 {
+    font-family: var(--font-text);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+}
+
+/* Boutons et lien-bouton : icône, texte centré, bordure, survol */
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 0.5rem;
+  background-color: var(--color-bg);
+  color: var(--color-accent);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--color-text);
+    outline-offset: 2px;
+  }
+}
+
+.button-primary {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+
+  &:hover {
+    background-color: var(--color-text);
+    border-color: var(--color-text);
+  }
+}
+
+/* Colonne de droite : espace entre les blocs */
+.book-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  & h2 {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Métadonnées côte à côte avec Flexbox */
+.book-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+
+  & dt {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  & dd {
+    font-weight: 700;
+  }
+}
+
+/* Résumé lisible : lignes pas trop longues, paragraphes espacés */
+.book-summary {
+  & summary {
+    color: var(--color-accent);
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* Arrivée via #resume-texte : on s'arrête assez haut pour voir le titre
+     de la section, sans qu'il soit caché par le header collant */
+  & #resume-texte {
+    scroll-margin-top: 11rem;
+  }
+
+  & p {
+    max-width: 65ch;
+    line-height: 1.75;
+    margin-top: 1rem;
+  }
+}
+
+/* Fenêtre de commande : carte centrée sur un fond assombri */
+dialog {
+  max-width: min(24rem, 100% - 2rem);
+  margin: auto;
+  padding: 1.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  box-shadow: 0 1rem 3rem rgb(43 26 33 / 0.3);
+
+  & h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  & form {
+    margin-top: 1.25rem;
+  }
+
+  &::backdrop {
+    background-color: rgb(43 26 33 / 0.5);
+  }
+}
+
+/* Exercice 5 — Petits écrans : une seule colonne */
+@media (max-width: 48rem) {
+  .book-header h1 {
+    font-size: 2.25rem;
+  }
+
+  .book-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .book-cover {
+    max-width: 14rem;
+    margin: 0 auto;
+  }
+}
+
+/* Bonus 4 — Fiche imprimable */
+@media print {
+  .book-aside .button,
+  .book-order,
+  .back-link {
+    display: none;
+  }
+
+  .book-layout {
+    grid-template-columns: 5cm 1fr;
+  }
+
+  .book-aside {
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .book-cover {
+    box-shadow: none;
+  }
+
+  /* Imprime le résumé même s'il est fermé (navigateurs récents seulement) */
+  details::details-content {
+    content-visibility: visible;
+  }
+
+  summary {
+    display: none;
+  }
+}

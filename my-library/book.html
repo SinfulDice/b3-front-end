@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gravitas+One&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" />
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="book.css">
+    <title>Moby-Dick — Ma bibliothèque</title>
+  </head>
+  <body>
+    <header>
+      <a class="site-name" href="index.html">Ma bibliothèque</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+        </ul>
+      </nav>
+      <hr />
+    </header>
+
+    <main>
+      <nav class="breadcrumb" aria-label="Fil d’Ariane">
+        <ol>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="book.html" aria-current="page">Moby-Dick</a></li>
+        </ol>
+      </nav>
+
+      <article class="book">
+        <header class="book-header">
+          <h1>Moby-Dick</h1>
+          <p class="book-author">Herman Melville</p>
+        </header>
+
+        <div class="book-layout">
+          <div class="book-aside">
+            <img class="book-cover" src="moby-dick.png" alt="Couverture du roman Moby-Dick" width="200" />
+
+            <a class="button" href="#resume-texte">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 4h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4z" />
+                <path d="M20 4h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6z" />
+              </svg>
+              Lire le résumé
+            </a>
+
+            <section class="book-order">
+              <h2>Commande de démonstration</h2>
+              <button class="button button-primary" type="button" command="show-modal" commandfor="command-dialog">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 8h14l-1.5 12h-11z" />
+                  <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+                </svg>
+                Commander le livre
+              </button>
+              <dialog id="command-dialog" aria-labelledby="dialog-title">
+                <h2 id="dialog-title">Commande enregistrée</h2>
+                <p>Merci pour votre intérêt pour Moby-Dick.</p>
+                <form method="dialog">
+                  <button class="button" type="submit">Fermer</button>
+                </form>
+              </dialog>
+            </section>
+          </div>
+
+          <div class="book-content">
+            <section>
+              <h2>Informations sur le livre</h2>
+              <dl class="book-meta">
+                <div>
+                  <dt>Auteur</dt>
+                  <dd>Herman Melville</dd>
+                </div>
+                <div>
+                  <dt>Première publication</dt>
+                  <dd><time datetime="1851">1851</time></dd>
+                </div>
+                <div>
+                  <dt>Langue originale</dt>
+                  <dd>Anglais</dd>
+                </div>
+                <div>
+                  <dt>Genre</dt>
+                  <dd>Roman d’aventure</dd>
+                </div>
+              </dl>
+            </section>
+
+            <section class="book-summary">
+              <h2>Présentation du roman</h2>
+              <details>
+                <summary>Lire le résumé de Moby-Dick</summary>
+                <p id="resume-texte">Ismaël embarque à bord du Pequod, un navire baleinier commandé par le capitaine Achab. Il découvre la vie en mer et les membres de l’équipage.</p>
+                <p>Achab poursuit Moby Dick, un cachalot blanc. Sa quête devient une obsession qui entraîne tout l’équipage dans une aventure périlleuse.</p>
+              </details>
+            </section>
+
+            <p class="back-link"><a href="index.html">Retour à la liste des livres</a></p>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer>
+      <hr />
+      <p>© 2026 Sup de Vinci — Bibliothèque pédagogique</p>
+    </footer>
+  </body>
+</html>
