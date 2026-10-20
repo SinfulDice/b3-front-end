@@ -112,6 +112,7 @@ export default function Home() {
               {books.map((book) => (
                 <li key={book.id}>
                   <BookCard
+                    id={book.id}
                     title={book.title}
                     authors={book.authors}
                     publishedDate={book.publishedDate}

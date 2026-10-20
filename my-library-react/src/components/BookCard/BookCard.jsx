@@ -1,8 +1,9 @@
+import { Link } from 'react-router'
 import styles from './BookCard.module.css'
 
-export default function BookCard({ title, authors, publishedDate, cover }) {
+export default function BookCard({ id, title, authors, publishedDate, cover }) {
   return (
-    <a className={styles.bookCard} href="book.html">
+    <Link className={styles.bookCard} to={`/books/${id}`}>
       <img className={styles.bookCover} src={cover} alt="" />
       <div className={styles.bookContent}>
         <h3 className={styles.bookTitle}>{title}</h3>
@@ -15,6 +16,6 @@ export default function BookCard({ title, authors, publishedDate, cover }) {
           )}
         </p>
       </div>
-    </a>
+    </Link>
   )
 }

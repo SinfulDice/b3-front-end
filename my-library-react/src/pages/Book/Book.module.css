@@ -15,6 +15,16 @@
     border: 0;
   }
 
+  .status {
+    margin: auto;
+    padding: 64px 32px;
+    text-align: center;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
   .bookDetail {
     display: grid;
     grid-template-columns: minmax(240px, 35%) minmax(0, 1fr);
@@ -186,22 +196,6 @@
       font-family: "Cormorant Garamond", serif;
       font-size: 56px;
       line-height: 1;
-    }
-  }
-
-  .orderDialog {
-    width: min(440px, calc(100% - 40px));
-    margin: auto;
-    padding: 32px;
-    border: 1px solid var(--border-color);
-    background-color: var(--background-color);
-
-    &::backdrop {
-      background-color: rgb(0 0 0 / 40%);
-    }
-
-    p {
-      margin-block: 20px;
     }
   }
 
