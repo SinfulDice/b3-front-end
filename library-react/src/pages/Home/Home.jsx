@@ -1,7 +1,60 @@
 import bookCover from '../../assets/moby-dick.png'
+import BookCard from '../../components/BookCard/BookCard'
 import styles from './Home.module.css'
+import { useState, useRef } from 'react'
+
+const books = [
+  {
+    id: 1,
+    title: 'Moby-Dick',
+    author: 'Herman Melville',
+    year: 1851,
+    cover: bookCover
+  },
+  {
+    id: 2,
+    title: 'Vingt mille lieues sous les mers',
+    author: 'Jules Verne',
+    year: 1870,
+    cover: bookCover
+  },
+  {
+    id: 3,
+    title: 'L’Île au trésor',
+    author: 'Robert Louis Stevenson',
+    year: 1883,
+    cover: bookCover
+  },
+  {
+    id: 4,
+    title: 'Le Tour du monde en quatre-vingts jours',
+    author: 'Robert Louis Stevenson',
+    year: 1883,
+    cover: bookCover
+  }
+]
+
 
 export default function Home() {
+  const [search, setSearch] = useState('')
+  const [query, setQuery] = useState('javascript')
+
+  const inputRef = useRef(null)
+
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value)
+  }
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault()
+    setQuery(search)
+  }
+
+  const handleSearchClear = () => {
+    setSearch('')
+    inputRef.current.focus()
+  }
+
   return (
     <main className={styles.page}>
       <h1 className={styles.title}>Bibliothèque</h1>
@@ -13,7 +66,7 @@ export default function Home() {
         <em>Quel sera votre prochain voyage ?</em>
       </p>
 
-      <form action="index.html" method="get">
+      <form action="index.html" method="get" onSubmit={handleSearchSubmit}>
         <div className={styles.searchField}>
           <input
             type="search"
@@ -21,55 +74,38 @@ export default function Home() {
             id="book-name"
             aria-label="Rechercher un livre"
             placeholder="Rechercher un titre, un auteur..."
+            value={search}
+            onChange={handleSearchChange}
+            ref={inputRef}
           />
           <button type="submit" aria-label="Rechercher">
             <span className="material-symbols-outlined" aria-hidden="true">
               search
             </span>
           </button>
+          <button type="button" aria-label="Effacer la recherche" onClick={handleSearchClear}>
+            <span className="material-symbols-outlined" aria-hidden="true">
+              close
+            </span>
+          </button>
         </div>
       </form>
+
+      <p>Recherche : {query}</p>
 
       <section className={styles.catalogue}>
         <h2>Les livres de la bibliothèque</h2>
 
         <ul className={styles.bookList}>
-          <li>
-            <a className={styles.bookCard} href="book.html">
-              <img className={styles.bookCover} src={bookCover} alt="" />
-              <div className={styles.bookContent}>
-                <h3 className={styles.bookTitle}>Moby-Dick</h3>
-                <p className={styles.bookMeta}>
-                  <span className={styles.bookAuthor}>Herman Melville</span>
-                  <time dateTime="1851">1851</time>
-                </p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a className={styles.bookCard} href="book.html">
-              <img className={styles.bookCover} src={bookCover} alt="" />
-              <div className={styles.bookContent}>
-                <h3 className={styles.bookTitle}>Vingt mille lieues sous les mers</h3>
-                <p className={styles.bookMeta}>
-                  <span className={styles.bookAuthor}>Jules Verne</span>
-                  <time dateTime="1870">1870</time>
-                </p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a className={styles.bookCard} href="book.html">
-              <img className={styles.bookCover} src={bookCover} alt="" />
-              <div className={styles.bookContent}>
-                <h3 className={styles.bookTitle}>L’Île au trésor</h3>
-                <p className={styles.bookMeta}>
-                  <span className={styles.bookAuthor}>Robert Louis Stevenson</span>
-                  <time dateTime="1883">1883</time>
-                </p>
-              </div>
-            </a>
-          </li>
+          {books.map((book) => (
+            <BookCard
+              key={book.id}
+              cover={book.cover}
+              title={book.title}
+              author={book.author}
+              date={book.year}
+            />
+          ))}
         </ul>
       </section>
     </main>
