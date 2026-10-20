@@ -8,7 +8,7 @@ function handleClick() {
 
 button.addEventListener('click', handleClick);
 
-const API_KEY = 'AIzaSyAAU-Fg7X8gopwftnbTfpLvCPxjQIgHzk0';
+const API_KEY = 'AIzaSyARWoybJwRsybmjoqU9Et4nyYW3O9yGlPM';
 
 async function fetchData() {
     const url = new URL('https://www.googleapis.com/books/v1/volumes');
