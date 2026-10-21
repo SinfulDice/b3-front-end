@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router'
 import { getBook } from '../../api/books.js'
+import { FavoritesContext } from '../../contexts/FavoritesContext.js'
 import styles from './Book.module.css'
 
 export default function Book() {
@@ -8,6 +9,8 @@ export default function Book() {
   const [book, setBook] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const { favoriteIds, toggleFavorite } = useContext(FavoritesContext)
+  const isFavorite = favoriteIds.includes(id)
 
   useEffect(() => {
     let ignore = false
@@ -64,6 +67,17 @@ export default function Book() {
             alt={`Couverture du livre ${book.title}`}
           />
           <div className={styles.bookActions}>
+            <button
+              className={[styles.bookAction, styles.primary].join(' ')}
+              type="button"
+              aria-pressed={isFavorite}
+              onClick={() => toggleFavorite(id)}
+            >
+              <span className="material-symbols-outlined" aria-hidden="true">
+                {isFavorite ? 'heart_minus' : 'favorite'}
+              </span>
+              {isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
+            </button>
             {book.summary.length > 0 && (
               <a className={styles.bookAction} href="#resume">
                 <span className="material-symbols-outlined" aria-hidden="true">
