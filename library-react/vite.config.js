@@ -8,7 +8,6 @@ export default defineConfig({
     rolldownOptions: {
       input: {
         home: fileURLToPath(new URL('./index.html', import.meta.url)),
-        book: fileURLToPath(new URL('./book.html', import.meta.url)),
       },
     },
   },

@@ -1,7 +1,34 @@
 import bookCover from '../../assets/moby-dick.png'
 import styles from './Book.module.css'
+import { useParams } from 'react-router'
+import { useState, useEffect } from 'react'
+import { fetchBookById } from '../../api/books';
+import { useFavoritesContext } from '../../contexts/FavoritesContext';
 
 export default function Book() {
+  const { id } = useParams();
+  const [book, setBook] = useState(null);
+
+  const { addFavorite, removeFavorite } = useFavoritesContext();
+
+  useEffect(() => {
+    async function fetchBook() {
+      try {
+        const book = await fetchBookById(id);
+        setBook(book);
+        console.log('Fetched book:', book);
+      } catch (error) {
+        console.error("Error fetching book:", error);
+      }
+    }
+
+    fetchBook();
+  }, [id]);
+
+  if (!book) {
+    return <p>Loading book details...</p>;
+  }
+
   return (
     <main className={styles.page}>
       <article className={styles.bookDetail}>
@@ -16,21 +43,19 @@ export default function Book() {
           <div className={styles.bookActions}>
             <button
               className={[styles.bookAction, styles.primary].join(' ')}
-              type="button"
-              command="show-modal"
-              commandFor="command-dialog"
+              onClick={() => addFavorite(book)}
             >
               <span className="material-symbols-outlined" aria-hidden="true">
                 add_circle
               </span>
-              Commander le livre
+              Ajouter au favoris
             </button>
-            <a className={styles.bookAction} href="#resume">
+            <button className={styles.bookAction} onClick={() => removeFavorite(book.id)}>
               <span className="material-symbols-outlined" aria-hidden="true">
                 menu_book
               </span>
-              Lire le résumé
-            </a>
+              Supprimer des favoris
+            </button>
           </div>
         </div>
 
@@ -38,12 +63,12 @@ export default function Book() {
           <nav className={styles.breadcrumb} aria-label="Fil d’Ariane">
             <ol>
               <li><a href="index.html">Bibliothèque</a></li>
-              <li aria-current="page">Moby-Dick</li>
+              <li aria-current="page">{book.volumeInfo.title}</li>
             </ol>
           </nav>
 
-          <h1>Moby-<span>Dick</span></h1>
-          <p className={styles.detailAuthor}>Herman Melville</p>
+          <h1>{book.volumeInfo.title}</h1>
+          <p className={styles.detailAuthor}>{book.volumeInfo.authors?.join(', ')}</p>
 
           <dl className={styles.detailMetadata}>
             <div>
@@ -52,7 +77,7 @@ export default function Book() {
                 calendar_today
               </span><span className={styles.visuallyHidden}>Première publication</span>
               </dt>
-              <dd><time dateTime="1851">1851</time></dd>
+              <dd><time dateTime={book.volumeInfo.publishedDate}>{book.volumeInfo.publishedDate}</time></dd>
             </div>
             <div>
               <dt>
@@ -97,18 +122,6 @@ export default function Book() {
           </section>
         </div>
       </article>
-
-      <dialog
-        className={styles.orderDialog}
-        id="command-dialog"
-        aria-labelledby="dialog-title"
-      >
-        <h2 id="dialog-title">Commande enregistrée</h2>
-        <p>Merci pour votre intérêt pour Moby-Dick.</p>
-        <form method="dialog">
-          <button className={[styles.bookAction, styles.primary].join(' ')} type="submit">Fermer</button>
-        </form>
-      </dialog>
     </main>
   )
 }

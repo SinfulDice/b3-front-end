@@ -1,45 +1,17 @@
-import bookCover from '../../assets/moby-dick.png'
 import BookCard from '../../components/BookCard/BookCard'
 import styles from './Home.module.css'
 import { useState, useRef } from 'react'
+import useBooks from '../../hooks/useBooks'
 
-const books = [
-  {
-    id: 1,
-    title: 'Moby-Dick',
-    author: 'Herman Melville',
-    year: 1851,
-    cover: bookCover
-  },
-  {
-    id: 2,
-    title: 'Vingt mille lieues sous les mers',
-    author: 'Jules Verne',
-    year: 1870,
-    cover: bookCover
-  },
-  {
-    id: 3,
-    title: 'L’Île au trésor',
-    author: 'Robert Louis Stevenson',
-    year: 1883,
-    cover: bookCover
-  },
-  {
-    id: 4,
-    title: 'Le Tour du monde en quatre-vingts jours',
-    author: 'Robert Louis Stevenson',
-    year: 1883,
-    cover: bookCover
-  }
-]
-
+const DEFAULT_QUERY = 'javascript'
 
 export default function Home() {
   const [search, setSearch] = useState('')
-  const [query, setQuery] = useState('javascript')
+  const [query, setQuery] = useState(DEFAULT_QUERY)
 
   const inputRef = useRef(null)
+
+  const { books, loading, error } = useBooks(query)
 
   const handleSearchChange = (event) => {
     setSearch(event.target.value)
@@ -47,6 +19,12 @@ export default function Home() {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault()
+
+    if (search.trim() === '') {
+      setQuery(DEFAULT_QUERY)
+      return
+    }
+
     setQuery(search)
   }
 
@@ -96,14 +74,18 @@ export default function Home() {
       <section className={styles.catalogue}>
         <h2>Les livres de la bibliothèque</h2>
 
+        {loading && <div className={styles.loading} />}
+        {error && <p className={styles.error}>{error}</p>}
+
         <ul className={styles.bookList}>
           {books.map((book) => (
             <BookCard
               key={book.id}
-              cover={book.cover}
-              title={book.title}
-              author={book.author}
-              date={book.year}
+              id={book.id}
+              cover={book.volumeInfo.imageLinks?.thumbnail || './assets/moby-dick.png'}
+              title={book.volumeInfo.title}
+              author={book.volumeInfo.authors?.join(', ') || ''}
+              date={book.volumeInfo.publishedDate || ''}
             />
           ))}
         </ul>
