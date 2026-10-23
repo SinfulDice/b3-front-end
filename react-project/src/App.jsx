@@ -1,29 +1,27 @@
-import { useEffect, useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import heroImg from "./assets/hero.png";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "./assets/vite.svg";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   function handleClick() {
-    setCount(count + 1)
+    setCount(count + 1);
   }
 
   useEffect(() => {
-    document.title = `Count is ${count}`
-
-
-  }, [count])
+    document.title = `Count is ${count}`;
+  }, [count]);
 
   useEffect(() => {
-    console.log('App mounted')
+    console.log("App mounted");
 
     return () => {
-      console.log('App unmounted')
-    }
-  }, [])
+      console.log("App unmounted");
+    };
+  }, []);
 
   return (
     <>
@@ -39,11 +37,7 @@ function App() {
             Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={handleClick}
-        >
+        <button type="button" className="counter" onClick={handleClick}>
           Count is {count}
         </button>
       </section>
@@ -134,7 +128,7 @@ function App() {
       <div className="ticks"></div>
       <section id="spacer"></section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

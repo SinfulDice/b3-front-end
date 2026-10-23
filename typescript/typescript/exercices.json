@@ -1,0 +1,149 @@
+[
+  {
+    "name": "01-fondamentaux",
+    "title": "Types primitifs, tableaux et tuples",
+    "notions": "Inférence, paramètres optionnels et par défaut, tableaux readonly, tuples, null",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "02-modelisation",
+    "title": "Modéliser les données métier",
+    "notions": "interface, type, intersection, readonly, propriétés optionnelles, import type",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "03-unions",
+    "title": "Unions et surcharges",
+    "notions": "Unions littérales, surcharge, narrowing, typeof",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "04-validation",
+    "title": "Valider une frontière unknown",
+    "notions": "unknown, gardes de types, prédicats, JSON, instanceof Error",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "05-exhaustivite",
+    "title": "États et exhaustivité",
+    "notions": "Union discriminée, never, contrôle de flux",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "06-generiques",
+    "title": "Écrire des fonctions génériques",
+    "notions": "Génériques, contraintes, tuples, collections readonly",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "07-cles",
+    "title": "Relier les clés aux valeurs",
+    "notions": "keyof, accès indexé T[K], contraintes génériques",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "08-utilitaires-objets",
+    "title": "Construire les contrats CRUD",
+    "notions": "Partial, Required, Readonly, Pick, Omit, Record",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "09-utilitaires-unions",
+    "title": "Filtrer des unions",
+    "notions": "Exclude, Extract, NonNullable, prédicat générique",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "10-utilitaires-fonctions",
+    "title": "Dériver des types de fonctions",
+    "notions": "Parameters, ReturnType, Awaited, Promise, catch unknown",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "11-types-avances",
+    "title": "Transformer des types",
+    "notions": "Mapped types, types conditionnels, infer, récursivité, modificateurs",
+    "runtime": false,
+    "types": true
+  },
+  {
+    "name": "12-chaines-types",
+    "title": "Créer des noms sûrs",
+    "notions": "Template literal types, remappage de clés, Uppercase, Lowercase, Capitalize, Uncapitalize",
+    "runtime": false,
+    "types": true
+  },
+  {
+    "name": "13-inference",
+    "title": "Conserver une inférence précise",
+    "notions": "as const, satisfies, typeof, NoInfer",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "14-classes",
+    "title": "Encapsuler un prêt",
+    "notions": "abstract, extends, implements, override, protected, readonly, #private, static, accesseurs",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "15-constructeurs-this",
+    "title": "Réutiliser les signatures et typer this",
+    "notions": "ConstructorParameters, InstanceType, ThisParameterType, OmitThisParameter, ThisType",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "16-api-standard",
+    "title": "Manipuler les objets standards typés",
+    "notions": "Map, Set, Date, RegExp, URL, URLSearchParams, Error, itérables",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "17-asynchrone",
+    "title": "Un client HTTP testable",
+    "notions": "Promise, injection de dépendances, unknown, erreurs HTTP, validation de données",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "18-evenements",
+    "title": "Concevoir une API d’événements typée",
+    "notions": "Génériques, keyof, mapped types, callbacks, Set, fermeture",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "19-identifiants",
+    "title": "Empêcher le mélange d’identifiants",
+    "notions": "unique symbol, types marqués, fonctions d’assertion asserts",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "20-dom",
+    "title": "Typer les interactions DOM",
+    "notions": "DOM, querySelector générique, null, addEventListener, Pick, nettoyage",
+    "runtime": true,
+    "types": true
+  },
+  {
+    "name": "21-api-compilateur",
+    "title": "Bonus : inspecter du TypeScript",
+    "notions": "API du compilateur : SourceFile, Node, SyntaxKind, createSourceFile, forEachChild, gardes is…",
+    "runtime": true,
+    "types": true
+  }
+]
